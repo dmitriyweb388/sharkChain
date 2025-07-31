@@ -1,0 +1,9 @@
+{
+  "port": 3000,
+  "nodeAddress": "http://domain.com",
+  "bootstrapNodes": [
+    "http://domain1.com",
+    "http://domain2.com",
+    "http://domain3.com"
+  ]
+}

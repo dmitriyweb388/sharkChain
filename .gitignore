@@ -1,1 +1,14 @@
+# Node.js
 node_modules
+
+# Prisma
+/src/generated/prisma
+/prisma/migrations
+/prisma/node-data.db
+prisma/node-data.db-journal
+
+# Env
+.env
+
+# Node config
+config.json
