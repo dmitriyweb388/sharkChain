@@ -1,6 +1,8 @@
 import chalk from "chalk";
 
 export class LoggerService {
+  private constructor() {}
+
   private static info = chalk.bold.bgBlue(" INFO ");
   private static warning = chalk.bold.bgYellow(" WARNING ");
   private static error = chalk.bold.bgRed(" ERROR ");

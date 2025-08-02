@@ -5,6 +5,8 @@ import { Config } from "./types";
 import { LoggerService } from "../logger/service";
 
 export class ConfigService {
+  private constructor() {}
+
   private static _config: Config | null;
 
   static async importAndValidateConfig() {
@@ -16,8 +18,13 @@ export class ConfigService {
       const configData = await import(`../../${CONFIG_PATH}`);
       const config: Config = configData?.default;
 
-      if (!ConfigSchema.safeParse(config).success) {
-        LoggerService.logError("Provided invalid config", true);
+      const configValidation = ConfigSchema.safeParse(config);
+
+      if (!configValidation.success) {
+        LoggerService.logError(
+          `Provided invalid config: ${configValidation.error}`,
+          true
+        );
       }
 
       this._config = config;

@@ -1,1 +1,1 @@
-export type AsyncTask = () => Promise<void>;
+export type AsyncFn = () => Promise<any>;
