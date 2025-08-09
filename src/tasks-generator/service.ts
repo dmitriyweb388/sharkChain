@@ -1,6 +1,10 @@
 import { ConfigService } from "../config/service";
-import { LoadAddressesTask, SendAddressesTask } from "../connection/types";
+import { LoadAddressesTask, SendAddressesTask } from "../connections/types";
 import { TaskType } from "../tasks/types";
+import {
+  CommonTransaction,
+  ProceedCommonTransactionTask,
+} from "../transactions/types";
 
 export class TasksGeneratorService {
   private constructor() {}
@@ -22,6 +26,16 @@ export class TasksGeneratorService {
         addresses,
       },
     } as LoadAddressesTask;
+
+    return task;
+  }
+
+  static genProceedCommonTransactionTask(transaction: CommonTransaction) {
+    const task = {
+      from: ConfigService.config.nodeAddress,
+      type: TaskType.PROCEED_COMMON_TRANSACTION,
+      data: transaction,
+    } as ProceedCommonTransactionTask;
 
     return task;
   }

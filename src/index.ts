@@ -4,15 +4,17 @@ import { ConfigService } from "./config/service";
 import { LoggerService } from "./logger/service";
 import { NodeDataService } from "./node-data/service";
 import { TasksController } from "./tasks/controller";
-import { ConnectionService } from "./connection/service";
-
-const app = express();
+import { ConnectionsService } from "./connections/service";
+import { UserInputService } from "./user-input/server";
+import { TasksGeneratorService } from "./tasks-generator/service";
 
 const main = async () => {
   try {
+    const app = express();
+
     await ConfigService.importAndValidateConfig();
     await NodeDataService.saveAddress(ConfigService.config.nodeAddress);
-    await ConnectionService.requestAddressesFromBootstrapNodes();
+    await ConnectionsService.requestAddressesFromBootstrapNodes();
 
     app.use(express.json());
     app.post("/", TasksController.handleTask);
@@ -21,6 +23,8 @@ const main = async () => {
       LoggerService.logInfo(
         `Node is running on port ${ConfigService.config.port}`
       );
+
+      UserInputService.askUser();
     });
   } catch {
     LoggerService.logError("Node was stopped with unknown error", true);

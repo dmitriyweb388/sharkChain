@@ -17,3 +17,14 @@ datasource db {
 model Address {
   address      String @id
 }
+
+model SentCommonTransaction {
+  signature   String  @id
+  transaction Json
+  fromAddress String        
+}
+
+model NotProceedCommonTransaction {
+  signature   String  @id
+  transaction Json
+}

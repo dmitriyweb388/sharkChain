@@ -4,7 +4,7 @@ import { LoadAddressesTask, SendAddressesTask } from "./types";
 import { TasksGeneratorService } from "../tasks-generator/service";
 import { NodeDataService } from "../node-data/service";
 
-export class ConnectionService {
+export class ConnectionsService {
   private constructor() {}
 
   static async handleLoadAddressesTask(task: LoadAddressesTask) {
